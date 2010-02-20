@@ -3384,7 +3384,7 @@ Gem::Specification.new do |s|
      "template/templates/views/show.jsp",
      "template/templates/web.xml"
   ]
-  s.homepage = %q{http://github.com/cscotta/miso-java}
+  s.homepage = %q{http://github.com/cscotta/miso}
   s.post_install_message = %q{Hello Miso! Type "miso-java-configure" to finish setting up Miso.}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
