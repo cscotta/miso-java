@@ -8,7 +8,7 @@ begin
     gem.summary = %Q{A library for generating Miso Java web applications.}
     gem.description = %q{Miso is a lightweight MVC Java web framework. This gem is a code generator for building Miso apps.}
     gem.email = "scott@phoreo.com"
-    gem.homepage = "http://github.com/cscotta/miso-java"
+    gem.homepage = "http://github.com/cscotta/miso"
     gem.authors = ["C. Scott Andreas"]
     gem.post_install_message = %q{Hello Miso! Type "miso-java-configure" to finish setting up Miso.}
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
