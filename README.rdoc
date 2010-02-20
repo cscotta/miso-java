@@ -1,6 +1,6 @@
 = miso-java
 
-Description goes here.
+A library for generating Miso Java web applications.
 
 == Note on Patches/Pull Requests
  

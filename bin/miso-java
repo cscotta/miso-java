@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+require 'ftools'
+require 'fileutils'
+require File.join(File.dirname(__FILE__),'../lib/miso_java')
+
+puts "\nMISO GENERATOR 2000 =============================================\n"
+puts "=================================================================\n\n"
+
+# Set task
+if ARGV[0] == 'create' and ARGV.size == 2
+  @task = 'create_app'
+elsif ARGV.size >= 3 and ARGV[0] == 'scaffold'
+  @task = 'scaffold'
+else
+  puts "To start a new app:   miso-java create puppyapp"
+  puts "To create a scaffold: miso-java scaffold Puppy name breed owner cuteness\n\n"
+  Process.exit
+end
+
+MisoJava.send(@task.to_sym, ARGV)
+

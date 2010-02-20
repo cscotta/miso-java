@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'ftools'
+require 'fileutils'
+require File.join(File.dirname(__FILE__),'../lib/miso_java')
+
+puts "\nMISO CONFIGBOT 2000 =============================================\n"
+puts "=================================================================\n\n"
+
+puts "Setting permissions on Jetty..."
+FileUtils.chmod_R 0777, File.dirname(__FILE__) + '/../jetty'
+
+puts "\n"
+puts "Hello Miso!"
+puts "Miso configured successfully. Type miso-java to start a project.\n\n"

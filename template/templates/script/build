@@ -1,0 +1,38 @@
+#!/bin/bash -e
+
+# Set the classpath to include the MySQL and ActiveObjects jars, plus other unpacked classes.
+export CLASSPATH=lib/mysql-connector-java-5.1.11-bin.jar:lib/DBPool-4.9.3.jar:lib/activeobjects-0.8.2.jar:lib/servlet-api.jar:lib/commons-lang-2.4.jar:lib/json-simple-1.1.jar
+
+echo "Cleaning build directory..."
+rm -rf build/* || true
+
+echo "Compiling project..."
+mkdir -p build/WEB-INF/classes || true
+javac -sourcepath app app/Application.java -d build/WEB-INF/classes -Xlint:deprecation
+
+echo "Preparing for deployment..."
+mkdir -p build/views || true
+cp -R app/views/* build/views
+cp -R public/* build/
+cp web.xml build/WEB-INF
+
+echo "Deploying to Jetty..."
+mkdir -p [[JETTY_PATH]]/webapps/[[APPNAME]] || true
+rm -rf [[JETTY_PATH]]/webapps/[[APPNAME]]/* || true
+
+cp -R build/* [[JETTY_PATH]]/webapps/[[APPNAME]]
+cp lib/* [[JETTY_PATH]]/lib/ext
+
+echo "Restarting Jetty..."
+[[JETTY_PATH]]/bin/jetty.sh restart
+
+# Jetty barfs some stuff out on restart that doesn't
+# bring us back to a command prompt. Make that happen.
+sleep 2
+echo ""
+echo "============================================================================================"
+echo "Deployed to http://localhost:8080/[[APPNAME]]/app"
+echo "See your app at http://localhost:8080/[[APPNAME]]/app?action=index&controller=ControllerName"
+echo "(Where 'ControllerName' is the name of a controller you created (e.g., puppy))"
+echo "============================================================================================"
+echo ""

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+echo "Hello Miso!"
+[[JETTY_PATH]]/bin/jetty.sh stop

@@ -5,12 +5,12 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "miso-java"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{A library for generating Miso Java web applications.}
+    gem.description = %q{Miso is a lightweight MVC Java web framework. This gem is a code generator for building Miso apps.}
     gem.email = "scott@phoreo.com"
     gem.homepage = "http://github.com/cscotta/miso-java"
-    gem.authors = ["Scott Andreas"]
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    gem.authors = ["C. Scott Andreas"]
+    gem.post_install_message = %q{Hello Miso! Type "miso-java-configure" to finish setting up Miso.}
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
@@ -18,29 +18,7 @@ rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
 
-require 'rake/testtask'
-Rake::TestTask.new(:test) do |test|
-  test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-begin
-  require 'rcov/rcovtask'
-  Rcov::RcovTask.new do |test|
-    test.libs << 'test'
-    test.pattern = 'test/**/test_*.rb'
-    test.verbose = true
-  end
-rescue LoadError
-  task :rcov do
-    abort "RCov is not available. In order to run rcov, you must: sudo gem install spicycode-rcov"
-  end
-end
-
-task :test => :check_dependencies
-
-task :default => :test
+task :default => :rdoc
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
