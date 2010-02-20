@@ -5,10 +5,13 @@ module MisoJava
   
   class << self
 
+    # Loads the Miso template files for code generation.
     def load_template(path)
       return load_file("#{TEMPLATES}/#{path}")
     end
+    
 
+    # Loads the contents of a single file from disk.
     def load_file(path)
       contents = ""
       file = File.new(path, "r")
@@ -19,8 +22,11 @@ module MisoJava
       return contents
     end
     
+    
+    # Main code generation happens here.
+    # Replace tokens in template files with app config data.
     def generate(template, model, columns)
-      
+
       # Application Name
       appname = Dir.pwd.split('/').last
       template.gsub!('[[APPNAME]]', appname.downcase)      
@@ -88,17 +94,15 @@ module MisoJava
 
       # SQL
       column_names = ""
-      columns.each do |column|
-        column_names += "`#{column}` varchar(255) DEFAULT NULL,\n"
-      end
-      template.gsub!('[[ColumnLinesForSQL]]', column_names)
-      
+      columns.each { |column| column_names += "`#{column}` varchar(255) DEFAULT NULL,\n" }
+      template.gsub!('[[ColumnLinesForSQL]]', column_names)      
       template.gsub!('[[PWD]]', Dir.pwd.split('/').last)
 
       return template
     end
 
-
+    # Starts a new application, copying the skeleton to a 
+    # folder named based on the user's command line input.
     def create_app(args)
       puts "Creating application: #{ARGV[1]}\n\n"
       FileUtils.cp_r "#{BASE}/template/skeleton", 'miso-skeleton'
@@ -109,9 +113,16 @@ module MisoJava
       web_xml.gsub!('[[AppName]]', ARGV[1].capitalize).gsub!('[[AppNameLowercase]]', ARGV[1].downcase)
       File.open("#{ARGV[1]}/web.xml", 'w') {|f| f.write(web_xml) }
       
-      # Update DB Name
+      # Update DB Config
+      puts "Please type the MySQL username to use:"
+      username = STDIN.gets.chomp
+
+      puts "Please type the MySQL password for this user:"
+      password = STDIN.gets.chomp
+      
       model = load_file("#{ARGV[1]}/app/miso/Model.java")
       model.gsub!('localhost/miso', "localhost/#{ARGV[1].downcase}")
+      model.gsub!('url, "root", ""', 'url, "'+ username + '", "' + password + '"')
       File.open("#{ARGV[1]}/app/miso/Model.java", 'w') {|f| f.write(model) }
 
       # Update Header Template Paths
@@ -119,9 +130,12 @@ module MisoJava
       header.gsub!('[[APPNAME]]', "#{ARGV[1].downcase}")
       File.open("#{ARGV[1]}/app/views/includes/header.html", 'w') {|f| f.write(header) }
 
-      
       # Generate scripts
       %w(build restart start stop).each { |script| generate_script(script, ARGV[1].downcase) }
+      
+      puts "== Hello Miso!  Your app is ready."
+      puts "Type 'cd #{ARGV[1]}', then 'miso-java' to start building your app!\n\n"
+      
     end
 
     def generate_script(name, app)
