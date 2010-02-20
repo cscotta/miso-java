@@ -10,7 +10,7 @@ begin
     gem.email = "scott@phoreo.com"
     gem.homepage = "http://github.com/cscotta/miso"
     gem.authors = ["C. Scott Andreas"]
-    gem.post_install_message = %q{Hello Miso! Type "miso-java-configure" to finish setting up Miso.}
+    gem.post_install_message = %q{=== HELLO MISO! Type "sudo miso-java-configure" to finish setting up Miso.}
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
