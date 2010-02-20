@@ -14,6 +14,8 @@ elsif ARGV.size >= 3 and ARGV[0] == 'scaffold'
 else
   puts "To start a new app:   miso-java create puppyapp"
   puts "To create a scaffold: miso-java scaffold Puppy name breed owner cuteness\n\n"
+  puts "Tools for good hacking: script/build, script/stop, script/start, script/restart\n\n"
+  puts "=== Full documentation:  See http://blog.paradoxica.net/post/401365886/hello-miso \n\n"
   Process.exit
 end
 
