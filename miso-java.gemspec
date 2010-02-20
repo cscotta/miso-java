@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{miso-java}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["C. Scott Andreas"]
@@ -3357,11 +3357,14 @@ Gem::Specification.new do |s|
      "lib/miso_java.rb",
      "miso-java.gemspec",
      "template/skeleton/app/Application.java",
+     "template/skeleton/app/controllers/.ohai",
      "template/skeleton/app/miso/Controller.java",
      "template/skeleton/app/miso/DispatchedRequest.java",
      "template/skeleton/app/miso/Model.java",
+     "template/skeleton/app/models/.ohai",
      "template/skeleton/app/views/includes/footer.html",
      "template/skeleton/app/views/includes/header.html",
+     "template/skeleton/db/schema/.ohai",
      "template/skeleton/lib/DBPool-4.9.3.jar",
      "template/skeleton/lib/activeobjects-0.8.2.jar",
      "template/skeleton/lib/commons-lang-2.4.jar",
@@ -3370,6 +3373,7 @@ Gem::Specification.new do |s|
      "template/skeleton/lib/servlet-api.jar",
      "template/skeleton/public/css/app.css",
      "template/skeleton/public/css/blueprint.css",
+     "template/skeleton/script/.ohai",
      "template/templates/controllers/Controller.java",
      "template/templates/models/ModelAccess.java",
      "template/templates/models/ModelDefinition.java",
@@ -3385,7 +3389,7 @@ Gem::Specification.new do |s|
      "template/templates/web.xml"
   ]
   s.homepage = %q{http://github.com/cscotta/miso}
-  s.post_install_message = %q{Hello Miso! Type "miso-java-configure" to finish setting up Miso.}
+  s.post_install_message = %q{=== HELLO MISO! Type "sudo miso-java-configure" to finish setting up Miso.}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.5}
