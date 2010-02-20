@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{miso-java}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["C. Scott Andreas"]
@@ -2757,6 +2757,7 @@ Gem::Specification.new do |s|
      "jetty/lib/win32/wrapper.dll",
      "jetty/lib/win32/wrapper.jar",
      "jetty/lib/xbean/jetty-xbean-6.1.22.jar",
+     "jetty/logs/.ohai",
      "jetty/modules/annotations/pom.xml",
      "jetty/modules/annotations/src/main/java/org/mortbay/jetty/annotations/AnnotationCollection.java",
      "jetty/modules/annotations/src/main/java/org/mortbay/jetty/annotations/AnnotationParser.java",
